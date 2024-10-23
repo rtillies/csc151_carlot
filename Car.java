@@ -25,12 +25,12 @@ public class Car {
   }
 
   /* Private Methods */
-  private boolean hasID() {
-    return this.id != null;
-  }
+  // private boolean hasID() {
+  //   return this.id != null;
+  // }
 
   private boolean noIDerror() {
-    if (!hasID()) {
+    if (this.id != null) {
       System.err.println("** This car has no ID");
       return true;
     }
@@ -71,16 +71,36 @@ public class Car {
   }
 
   /* COMPARATORS */
+  /* 
+   * returns positive number if this car value > other car value
+   * returns negative number if this car value < other car value
+   * returns zero if this car value == other car value
+   */
   int compareMPG(Car otherCar) {
-    return this.mpg - otherCar.mpg;
+    int value = this.getMpg();
+    int otherValue = otherCar.getMpg();
+    if (value > otherValue) return 1;
+    else if (value == otherValue) return 0;
+    else return -1;
+    // return this.getMpg() - otherCar.getMpg();
   }
 
   int compareMiles(Car otherCar) {
-    return this.mileage - otherCar.mileage;
+    int value = this.getMileage();
+    int otherValue = otherCar.getMileage();
+    if (value > otherValue) return 1;
+    else if (value == otherValue) return 0;
+    else return -1;
+    // return this.getMileage() - otherCar.getMileage();
   }
 
   int comparePrice(Car otherCar) {
-    return (int)(this.salesPrice - otherCar.salesPrice);
+    double value = this.getSalesPrice();
+    double otherValue = otherCar.getSalesPrice();
+    if (value > otherValue) return 1;
+    else if (value == otherValue) return 0;
+    else return -1;
+    // return (int)(this.getSalesPrice() - otherCar.getSalesPrice());
   }
 
   /* MUTATORS */
@@ -143,12 +163,8 @@ public class Car {
     str += "Car ID:      " + this.id + "\n";
     str += "Mileage:     " + this.mileage + "\n";
     str += "MPG:         " + this.mpg + "\n";
-    // str += "Car ID:  " + this.id + "\n";
-    // str += "Mileage: " + this.mileage + "\n";
-    // str += "MPG:     " + this.mpg + "\n";
     str += String.format("Cost:        $%,10.2f %n", this.cost);
-    str += "Sold?        ";
-    str += (this.sold ? "Yes" : "No") + "\n";
+    str += "Sold?        " + (this.sold ? "Yes" : "No") + "\n";
 
     if(isSold()) {
       str += String.format("Sales Price: $%,10.2f %n", this.salesPrice);
