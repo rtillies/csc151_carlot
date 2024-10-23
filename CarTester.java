@@ -8,19 +8,21 @@ public class CarTester {
     // Try to change existing info
     lexus.setID("New Lexus");
     lexus.setMileage(10000);
+    lexus.setMPG(35);
+    lexus.setCost(5500);
+    lexus.setSalesPrice(23250);
 
     // Sell Lexus
-    lexus.sellCar(25000);
+    lexus.sellCar(22000);
 
     // Print car information
-    // System.out.println(lexus);
+    System.out.println(lexus);
     // System.out.println(tucson);
 
     // Better Mileage?
     System.out.print("Better Mileage: ");
     System.out.println(betterMileage(lexus, tucson).getID());
-    
-    
+        
     // More Miles?
     System.out.print("More Miles:     ");
     System.out.println(moreMiles(lexus, tucson).getID());
