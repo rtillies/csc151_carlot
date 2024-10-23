@@ -24,6 +24,10 @@ public class Car {
     this.profit = 0.0;
   }
 
+  private boolean hasID() {
+    return this.id != null;
+  }
+
   /* ACCESSORS */
   public String getID() {
     return this.id;
@@ -72,34 +76,34 @@ public class Car {
 
   /* MUTATORS */
   public void setID(String id) {
-    if (this.id == null) {
+    if (!hasID()) {
       this.id = id;
     }
+    System.err.println("** ID Exists: " + this.id);
   }
 
   public void setMileage(int mileage) {
-    if (this.mileage <= 0) {
+    if (hasID() && this.mileage <= 0) {
       this.mileage = mileage;
     }
   }
 
   public void setMPG(int mpg) {
-    if (this.mpg <= 0) {
+    if (hasID() && this.mpg <= 0) {
       this.mpg = mpg;
     }
   }
 
   public void setCost(double cost) {
-    if (this.cost <= 0) {
+    if (hasID() && this.cost <= 0) {
       this.cost = cost;
     }
   }
 
   public void setSalesPrice(double salesPrice) {
-    this.salesPrice = salesPrice;
-    // if (this.salesPrice <= 0) {
-      // this.salesPrice = salesPrice;
-    // }
+    if(hasID()) {
+      this.salesPrice = salesPrice;
+    }
   }
 
   public void sellCar(double priceSold) {
