@@ -1,5 +1,5 @@
 
-public class OriginalCar {
+public class CheckedCar {
   
   private String id;
   private int mileage;
@@ -11,9 +11,9 @@ public class OriginalCar {
   private double profit;
 
   /* CONSTRUCTORS */
-  public OriginalCar() {}
+  public CheckedCar() {}
 
-  public OriginalCar(String id, int mileage, int mpg, double cost, double salesPrice) {
+  public CheckedCar(String id, int mileage, int mpg, double cost, double salesPrice) {
     this.id = id;
     this.mileage = mileage;
     this.mpg = mpg;
@@ -22,6 +22,11 @@ public class OriginalCar {
     this.sold = false;
     this.priceSold = 0.0;
     this.profit = 0.0;
+  }
+
+  /* Private Methods */
+  private boolean hasID() {
+    return this.id != null;
   }
 
   /* ACCESSORS */
@@ -58,37 +63,52 @@ public class OriginalCar {
   }
 
   /* COMPARATORS */
-  int compareMPG(OriginalCar otherCar) {
+  int compareMPG(CheckedCar otherCar) {
     return this.mpg - otherCar.mpg;
   }
 
-  int compareMiles(OriginalCar otherCar) {
+  int compareMiles(CheckedCar otherCar) {
     return this.mileage - otherCar.mileage;
   }
 
-  int comparePrice(OriginalCar otherCar) {
+  int comparePrice(CheckedCar otherCar) {
     return (int)(this.salesPrice - otherCar.salesPrice);
   }
 
   /* MUTATORS */
   public void setID(String id) {
-    this.id = id;
+    if (!hasID()) {
+      this.id = id;
+    }
+    System.err.println("** ID Exists: " + this.id);
   }
 
   public void setMileage(int mileage) {
-    this.mileage = mileage;
+    if (!hasID()) {
+      System.err.println("** This car has no ID");
+    } else if (this.mileage > 0) {
+      System.err.println("** Cannot change mileage on " + this.id);
+    } else {
+      this.mileage = mileage;
+    }
   }
 
   public void setMPG(int mpg) {
-    this.mpg = mpg;
+    if (hasID() && this.mpg <= 0) {
+      this.mpg = mpg;
+    }
   }
 
   public void setCost(double cost) {
-    this.cost = cost;
+    if (hasID() && this.cost <= 0) {
+      this.cost = cost;
+    }
   }
 
   public void setSalesPrice(double salesPrice) {
-    this.salesPrice = salesPrice;
+    if(hasID()) {
+      this.salesPrice = salesPrice;
+    }
   }
 
   public void sellCar(double priceSold) {
@@ -102,16 +122,20 @@ public class OriginalCar {
   /* toString method */
   public String toString() {
     String str = "";
-    str += "Car ID:  " + this.id + "\n";
-    str += "Mileage: " + this.mileage + "\n";
-    str += "MPG:     " + this.mpg + "\n";
-    str += String.format("Cost: $%,.2f %n", this.cost);
-    str += "Sold? " + (this.sold ? "Yes" : "No") + "\n";
+    str += "Car ID:      " + this.id + "\n";
+    str += "Mileage:     " + this.mileage + "\n";
+    str += "MPG:         " + this.mpg + "\n";
+    // str += "Car ID:  " + this.id + "\n";
+    // str += "Mileage: " + this.mileage + "\n";
+    // str += "MPG:     " + this.mpg + "\n";
+    str += String.format("Cost:        $%,10.2f %n", this.cost);
+    str += "Sold?        ";
+    str += (this.sold ? "Yes" : "No") + "\n";
 
     if(isSold()) {
-      str += String.format("Sales Price: $%,.2f %n", this.salesPrice);
-      str += String.format("Price Sold: $%,.2f %n", this.priceSold);
-      str += String.format("Profit: $%,.2f %n", this.profit);
+      str += String.format("Sales Price: $%,10.2f %n", this.salesPrice);
+      str += String.format("Price Sold:  $%,10.2f %n", this.priceSold);
+      str += String.format("Profit:      $%,10.2f %n", this.profit);
     }
 
     return str;
