@@ -112,7 +112,11 @@ public class Car {
   }
 
   public void setCost(double cost) {
-    if (hasID() && this.cost <= 0) {
+    if (!hasID()) {
+      System.err.println("** This car has no ID");
+    } else if (this.cost > 0) {
+      System.err.println("** Cannot change cost on " + this.id);
+    } else {
       this.cost = cost;
     }
   }
