@@ -1,6 +1,6 @@
 package sandbox;
 
-public class CarTesterCopy {
+public class CarTester {
   // public static void main(String[] args) throws Exception {
   public static void main(String[] args) {
     // Car lexus = new Car("Lexus ES350", 48000, 26, 18875, 24500);
