@@ -24,8 +24,17 @@ public class Car {
     this.profit = 0.0;
   }
 
+  /* Private Methods */
   private boolean hasID() {
     return this.id != null;
+  }
+
+  private boolean noIDerror() {
+    if (!hasID()) {
+      System.err.println("** This car has no ID");
+      return true;
+    }
+    return false;
   }
 
   /* ACCESSORS */
@@ -93,7 +102,11 @@ public class Car {
   }
 
   public void setMPG(int mpg) {
-    if (hasID() && this.mpg <= 0) {
+    if (!hasID()) {
+      System.err.println("** This car has no ID");
+    } else if (this.mpg > 0) {
+      System.err.println("** Cannot change MPG on " + this.id);
+    } else {
       this.mpg = mpg;
     }
   }
