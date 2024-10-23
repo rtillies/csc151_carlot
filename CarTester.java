@@ -2,22 +2,18 @@
 public class CarTester {
   // public static void main(String[] args) throws Exception {
   public static void main(String[] args) {
-    Car lexus = new Car("Lexus ES350", 48000, 26, 18875, 24500);
-    Car tucson = new Car("2014 Hyundai Tucson", 12500, 32, 9850, 17500);
+    // Car lexus = new Car("Lexus ES350", 48000, 26, 18875, 24500);
+    Car tucson = new Car("2018 Hyundai Tucson", 12500, 32, 9850, 17500);
+    Car lexus = new Car(); 
 
-    // Try to change existing info
-    lexus.setID("New Lexus");
-    lexus.setMileage(10000);
-    lexus.setMPG(35);
-    lexus.setCost(5500);
-    lexus.setSalesPrice(23250);
+    lexus.setID("2020 Lexus ES350");
+    lexus.setMileage(48000);
+    lexus.setMPG(26);
+    lexus.setCost(18875);
+    lexus.setSalesPrice(24500);
 
     // Sell Lexus
     lexus.sellCar(22000);
-
-    // Print car information
-    System.out.println(lexus);
-    // System.out.println(tucson);
 
     // Better Mileage?
     System.out.print("Better Mileage: ");
@@ -30,6 +26,10 @@ public class CarTester {
     // Higher Price?
     System.out.print("Higher Price:   ");
     System.out.println(higherPrice(lexus, tucson).getID());
+
+    // Print car information
+    System.out.println(lexus);
+    System.out.println(tucson);
   }
 
   // Return car with better mileage
@@ -46,6 +46,4 @@ public class CarTester {
   public static Car higherPrice(Car a, Car b) {
     return a.comparePrice(b) > 0 ? a : b;
   }
-
-  
 }
