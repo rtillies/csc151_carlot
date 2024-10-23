@@ -1,3 +1,5 @@
+package sandbox;
+import Car;
 
 public class CarTesterCopy {
   // public static void main(String[] args) throws Exception {
