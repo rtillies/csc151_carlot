@@ -122,7 +122,9 @@ public class Car {
   }
 
   public void setSalesPrice(double salesPrice) {
-    if(hasID()) {
+    if (!hasID()) {
+      System.err.println("** This car has no ID");
+    } else {
       this.salesPrice = salesPrice;
     }
   }
