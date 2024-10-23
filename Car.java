@@ -83,7 +83,11 @@ public class Car {
   }
 
   public void setMileage(int mileage) {
-    if (hasID() && this.mileage <= 0) {
+    if (!hasID()) {
+      System.err.println("** This car has no ID");
+    } else if (this.mileage > 0) {
+      System.err.println("** Cannot change mileage on " + this.id);
+    } else {
       this.mileage = mileage;
     }
   }
