@@ -26,17 +26,17 @@ public class Car {
   }
 
   /* Private Methods */
-  // private boolean hasID() {
-  //   return this.id != null;
-  // }
-
-  private boolean noIDerror() {
-    if (this.id != null) {
-      System.err.println("** This car has no ID");
-      return true;
-    }
-    return false;
+  private boolean hasID() {
+    return this.id != null;
   }
+
+  // private boolean noIDerror() {
+  //   if (this.id != null) {
+  //     System.err.println("** This car has no ID");
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   /* ACCESSORS */
   public String getID() {
